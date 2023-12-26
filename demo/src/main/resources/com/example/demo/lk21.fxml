@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.CheckBox?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.CinemaBookingController"
+      alignment="CENTER"
+      spacing="10">
+
+    <Label text="Cinema Booking System" />
+
+    <VBox alignment="CENTER" spacing="5">
+        <Label text="Enter movie name:" />
+        <TextField fx:id="movieNameField" />
+        <Label text="Enter number of tickets:" />
+        <TextField fx:id="numTicketsField" />
+        <Button text="Check Availability" onAction="#checkAvailabilityHandler" />
+    </VBox>
+
+    <HBox alignment="CENTER" spacing="10">
+        <Label text="Booking Status: " />
+        <Label fx:id="statusLabel" />
+    </HBox>
+
+    <ProgressBar fx:id="availabilityBar" progress="0.0" visible="false" />
+
+    <HBox layoutX="14.0" layoutY="14.0" spacing="5">
+        <children>
+            <CheckBox id="seat1" onAction="#handleSeatSelection" />
+            <CheckBox id="seat2" onAction="#handleSeatSelection" />
+            <CheckBox id="seat3" onAction="#handleSeatSelection" />
+        </children>
+    </HBox>
+
+</VBox>

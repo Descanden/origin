@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="modul6">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/openjfx-21.0.1_windows-x64_bin-sdk.zip!/" />
+      <root url="jar://$PROJECT_DIR$/Rofiq Samanhudi-202210370311260-Proglan 6.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml/1">
+
+    <!-- Title -->
+    <Label text="Cinema Booking System" />
+
+    <!-- Login Tabs -->
+    <TabPane>
+        <!-- Admin Login Tab -->
+        <Tab text="Admin">
+            <VBox alignment="CENTER" spacing="10">
+                <!-- Admin Login Fields -->
+                <Label text="Admin Login" />
+                <TextField fx:id="adminUsername" promptText="Admin Username" />
+                <PasswordField fx:id="adminPassword" promptText="Admin Password" />
+                <Button onAction="#adminLoginHandler" text="Login as Admin" />
+            </VBox>
+        </Tab>
+
+        <!-- Customer Login Tab -->
+        <Tab text="Customer">
+            <VBox alignment="CENTER" spacing="10">
+                <!-- Customer Login Fields -->
+                <Label text="Customer Login" />
+                <TextField fx:id="customerUsername" promptText="Customer Username" />
+                <PasswordField fx:id="customerPassword" promptText="Customer Password" />
+                <Button onAction="#customerLoginHandler" text="Login as Customer" />
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox>

@@ -1,0 +1,15 @@
+===== Nota Pemesanan =====
+Nama Pembeli: fd
+Jam Penayangan: 15:00
+Nama Film: Kimi No Nawa
+Kursi Terpilih: Kursi 2
+===== Nota Pemesanan =====
+Nama Pembeli: r
+Jam Penayangan: 15:00
+Nama Film: Kimi No Nawa
+Kursi Terpilih: Kursi 11
+===== Nota Pemesanan =====
+Nama Pembeli: sf
+Jam Penayangan: 12:00
+Nama Film: Kimi No Nawa
+Kursi Terpilih: Kursi 64

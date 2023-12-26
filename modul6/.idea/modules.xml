@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/javafx-sdk-21.0.1/javafx.base/javafx.base.iml" filepath="$PROJECT_DIR$/javafx-sdk-21.0.1/javafx.base/javafx.base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javafx-sdk-21.0.1/javafx.controls/javafx.controls.iml" filepath="$PROJECT_DIR$/javafx-sdk-21.0.1/javafx.controls/javafx.controls.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javafx-sdk-21.0.1/javafx.fxml/javafx.fxml.iml" filepath="$PROJECT_DIR$/javafx-sdk-21.0.1/javafx.fxml/javafx.fxml.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javafx-sdk-21.0.1/javafx.graphics/javafx.graphics.iml" filepath="$PROJECT_DIR$/javafx-sdk-21.0.1/javafx.graphics/javafx.graphics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javafx-sdk-21.0.1/javafx.media/javafx.media.iml" filepath="$PROJECT_DIR$/javafx-sdk-21.0.1/javafx.media/javafx.media.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javafx-sdk-21.0.1/javafx.swing/javafx.swing.iml" filepath="$PROJECT_DIR$/javafx-sdk-21.0.1/javafx.swing/javafx.swing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javafx-sdk-21.0.1/javafx.web/javafx.web.iml" filepath="$PROJECT_DIR$/javafx-sdk-21.0.1/javafx.web/javafx.web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modul6.iml" filepath="$PROJECT_DIR$/modul6.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefWidth="346.0" spacing="20" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+
+    <!-- Welcome Admin -->
+    <VBox alignment="CENTER" spacing="10">
+        <Label text="Welcome Admin" />
+        <Label text="Cinema Booking System" />
+    </VBox>
+
+    <!-- Admin Functionalities Tabs -->
+    <TabPane fx:id="adminFunctionalities" prefHeight="368.0" prefWidth="346.0" visible="true">
+
+        <!-- Add Movies Tab -->
+        <Tab text="Add Movies">
+            <VBox alignment="CENTER" prefHeight="262.0" prefWidth="220.0" spacing="10">
+                <Label text="Add Movie" />
+                <!-- Input Fields for Movie Details -->
+                <VBox spacing="10">
+                    <HBox alignment="CENTER" spacing="10">
+                        <Label text="Movie Title:" />
+                        <TextField fx:id="movieTitleInput" promptText="Movie Title" />
+                    </HBox>
+                    <HBox alignment="CENTER" spacing="10">
+                        <Label text="Genre:" />
+                        <TextField fx:id="movieGenreInput" promptText="Genre" />
+                    </HBox>
+                    <HBox alignment="CENTER" spacing="10">
+                        <Label text="Duration:" />
+                        <TextField fx:id="movieDurationInput" promptText="Duration" />
+                    </HBox>
+                    <HBox alignment="CENTER" spacing="10">
+                        <Label text="Show Date:" />
+                        <TextField fx:id="movieDateInput" promptText="Showing Date" />
+                    </HBox>
+                    <HBox alignment="CENTER" spacing="10">
+                        <Button onAction="#insertMovieHandler" text="Insert" />
+                        <Button onAction="#updateMovieHandler" text="Update" />
+                        <Button onAction="#deleteMovieHandler" text="Delete" />
+                    </HBox>
+                </VBox>
+            </VBox>
+        </Tab>
+
+        <!-- Display Movie Details -->
+        <Tab text="Display Movies">
+            <VBox alignment="CENTER" spacing="10">
+                <Label text="Movie Details" />
+                <VBox spacing="5">
+                    <Label fx:id="displayMovieTitle" />
+                    <Label fx:id="displayMovieGenre" />
+                    <Label fx:id="displayMovieDuration" />
+                    <Label fx:id="displayMovieDate" />
+                </VBox>
+            </VBox>
+        </Tab>
+
+        <!-- Customer Reservations Tab -->
+        <Tab text="Customer Reservations">
+            <VBox alignment="CENTER" spacing="10">
+                <Label text="Customer Reservations" />
+                <VBox spacing="5">
+                    <ListView fx:id="customerReservations" />
+                </VBox>
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox>

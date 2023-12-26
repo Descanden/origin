@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+
+    <!-- Welcome Customer -->
+    <VBox alignment="CENTER" spacing="10">
+        <Label text="Welcome Customer" />
+        <Label text="Cinema Booking System" />
+    </VBox>
+
+    <!-- Customer Functionalities Tabs -->
+    <TabPane fx:id="customerFunctionalities" visible="true">
+        <!-- Available Movies Tab -->
+        <Tab text="Available Movies">
+            <VBox alignment="CENTER" prefHeight="149.0" prefWidth="248.0" spacing="10">
+                <Label text="Purchase Tickets" />
+                <VBox spacing="5">
+                    <!-- Placeholder for displaying available movies -->
+                    <ListView fx:id="availableMoviesCustomer" prefWidth="248.0" />
+                </VBox>
+                <HBox spacing="10">
+                    <Button onAction="#chooseSeatsHandler" text="Choose Seats" />
+                    <Button onAction="#purchaseTicketHandler" text="Purchase" />
+                </HBox>
+                <HBox prefHeight="0.0" prefWidth="248.0" spacing="10">
+                    <Label text="Selected Seats: " />
+                    <Label fx:id="selectedSeatsLabel" />
+                </HBox>
+            </VBox>
+        </Tab>
+
+        <!-- Booked Movies Tab -->
+        <Tab text="Booked Movies">
+            <VBox alignment="CENTER" spacing="10">
+                <Label text="Your Booked Movies" />
+                <VBox spacing="5">
+                    <!-- Placeholder for displaying booked movies -->
+                    <ListView fx:id="bookedMoviesCustomer" />
+                </VBox>
+                <HBox spacing="10">
+                    <Button onAction="#cancelBookingCustomerHandler" text="Cancel Booking" />
+                    <Button onAction="#rescheduleBookingCustomerHandler" text="Reschedule Booking" />
+                </HBox>
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox>
