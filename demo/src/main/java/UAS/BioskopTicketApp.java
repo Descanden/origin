@@ -1,20 +1,32 @@
-package UAS;
+package com.example.Others;
 
-import com.example.Others.*;
 import javafx.application.Application;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
+
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.HashSet;
+
+import java.util.Set;
 import java.util.stream.Collectors;
+import javafx.scene.image.ImageView;
+
+
+import com.example.Others.*;
+
+import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.Node;
 
 public class BioskopTicketApp extends Application {
 
@@ -128,7 +140,6 @@ public class BioskopTicketApp extends Application {
                 jamPenayangan = jamPenayanganComboBox.getValue();
                 film = filmComboBox.getValue();
 
-                generateRandomSeats();
 
                 showSeatSelection();
             } catch (InputValidationException e) {
@@ -143,24 +154,30 @@ public class BioskopTicketApp extends Application {
     }
 
     private void showSeatSelection() {
+        BorderPane borderPane = new BorderPane();
+        VBox movieInfoVBox = new VBox();
+        HBox posterAndCheckboxHBox = new HBox();
         seatGridPane = new GridPane();
         seatGridPane.setPadding(new Insets(20, 20, 20, 20));
         seatGridPane.setVgap(10);
         seatGridPane.setHgap(10);
 
-        // Add ImageView to display the movie poster
+        // Add movie title and jam tayang labels above the poster
+        Label titleLabel = new Label("Movie: " + film.getName());
+        Label showtimeLabel = new Label("Jam Tayang: " + jamPenayangan);
+        movieInfoVBox.getChildren().addAll(titleLabel, showtimeLabel);
+
+        // Add movie info (title and showtime) above the poster
         ImageView posterImageView = new ImageView(getClass().getResource(film.getPosterPath()).toExternalForm());
         posterImageView.setFitWidth(300);
         posterImageView.setFitHeight(400);
-        seatGridPane.add(posterImageView, 0, 0, 2, 1);
 
-        // Add movie title and jam tayang labels
-        Label titleLabel = new Label("Movie: " + film.getName());
-        Label showtimeLabel = new Label("Jam Tayang: " + jamPenayangan);
-        seatGridPane.add(titleLabel, 0, 1, 2, 1);
-        seatGridPane.add(showtimeLabel, 0, 2, 2, 1);
+        posterAndCheckboxHBox.getChildren().addAll(posterImageView, seatGridPane);
+        borderPane.setTop(movieInfoVBox);
+        borderPane.setCenter(posterAndCheckboxHBox);
 
-        int rowCount = 3; // Start from the fourth row
+        // Create a sub-grid for checkboxes
+        int rowCount = 0;
         int colCount = 0;
 
         for (int i = 1; i <= 80; i++) {
@@ -168,11 +185,9 @@ public class BioskopTicketApp extends Application {
             checkBox.setPrefWidth(60);
             checkBox.setPadding(new Insets(5));
 
-            if (kursiRandomTerisi.contains(i)) {
-                checkBox.setDisable(true);
+            // Check apakah kursi sudah terisi secara acak atau dipilih oleh pengguna
+            if (kursiPilihanUser.contains(i)) {
                 checkBox.setSelected(true);
-            } else if (kursiPilihanUser.contains(i)) {
-                checkBox.setDisable(true);
             }
 
             seatGridPane.add(checkBox, colCount, rowCount);
@@ -191,45 +206,53 @@ public class BioskopTicketApp extends Application {
                         kursiPilihanUser.remove(Integer.valueOf(kursiNumber));
                     }
                 }
+
             });
 
-            colCount++;
-            if (colCount == 10) {
-                colCount = 0;
-                rowCount++;
+            rowCount++;
+            if (rowCount == 10) {
+                rowCount = 0;
+                colCount++;
             }
         }
 
+        // Create button for booking in the center
         Button pesanButton = new Button("Pesan");
-        GridPane.setMargin(pesanButton, new Insets(10, 0, 0, 0));
-        seatGridPane.add(pesanButton, 0, rowCount + 1, 10, 1);
+        VBox centerVBox = new VBox(pesanButton);
+        centerVBox.setAlignment(Pos.CENTER);
+        borderPane.setBottom(centerVBox);
 
         pesanButton.setOnAction(event -> {
             showNotaAndRecordPurchase();
             resetUI();
         });
 
-        Scene seatSelectionScene = new Scene(seatGridPane, 600, 600);
+        Scene seatSelectionScene = new Scene(borderPane, 900, 500); // Sesuaikan ukuran jika diperlukan
         primaryStage.setScene(seatSelectionScene);
     }
 
 
+
     private void showNotaAndRecordPurchase() {
-        StringBuilder nota = new StringBuilder();
-        nota.append("===== Nota Pemesanan =====\n");
-        nota.append("Nama Pembeli: ").append(pembeli).append("\n");
-        nota.append("Jam Penayangan: ").append(jamPenayangan).append("\n");
-        nota.append("Nama Film: ").append(film.getName()).append("\n");
-        nota.append("Kursi Terpilih: ");
+        if (kursiPilihanUser.isEmpty()) {
+            showAlert("Error", "Anda harus memilih setidaknya satu kursi untuk melakukan pemesanan.");
+        } else {
+            StringBuilder nota = new StringBuilder();
+            nota.append("===== Nota Pemesanan =====\n");
+            nota.append("Nama Pembeli: ").append(pembeli).append("\n");
+            nota.append("Jam Penayangan: ").append(jamPenayangan).append("\n");
+            nota.append("Nama Film: ").append(film.getName()).append("\n");
+            nota.append("Kursi Terpilih: ");
 
-        for (int kursi : kursiPilihanUser) {
-            nota.append("Kursi ").append(kursi).append(", ");
-        }
-        if (!kursiPilihanUser.isEmpty()) {
-            nota.delete(nota.length() - 2, nota.length());
-        }
+            for (int kursi : kursiPilihanUser) {
+                nota.append("Kursi ").append(kursi).append(", ");
+            }
+            if (!kursiPilihanUser.isEmpty()) {
+                nota.delete(nota.length() - 2, nota.length());
+            }
 
-        showNotaAndRecordPurchase(nota.toString());
+            showNotaAndRecordPurchase(nota.toString());
+        }
     }
 
     private void showNotaAndRecordPurchase(String nota) {
@@ -264,16 +287,6 @@ public class BioskopTicketApp extends Application {
         }
     }
 
-    private void generateRandomSeats() {
-        kursiRandomTerisi.clear();
-        Random random = new Random();
-        int jumlahKursiTerisi = (int) (80 * 0.75);
-
-        for (int i = 0; i < jumlahKursiTerisi; i++) {
-            int kursiNumber = random.nextInt(80) + 1;
-            kursiRandomTerisi.add(kursiNumber);
-        }
-    }
 
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -281,6 +294,7 @@ public class BioskopTicketApp extends Application {
         alert.setHeaderText(null);
         alert.setContentText(content);
         alert.showAndWait();
+
     }
 
     private static class InputValidationException extends Exception {
@@ -303,6 +317,6 @@ public class BioskopTicketApp extends Application {
         }
     }
 
-    public static void setRoot(String string) {
+    public static void setRoot(String string){
     }
 }
